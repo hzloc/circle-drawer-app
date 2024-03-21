@@ -1,5 +1,5 @@
+import logging
 from dataclasses import dataclass, field
-from utils.log import log
 from bokeh.plotting import figure, show
 
 
@@ -8,9 +8,9 @@ class Circle:
     radius: int
 
     def __post_init__(self):
-        if not self.radius < 1 or not self.radius > 0:
-            log.exception("Radius values is expected to be between: 0 and 1!")
-            self.radius = 1
+        if not self.radius <= 1 or not self.radius >= 0:
+            logging.exception("Radius values is expected to be between: 0 and 1!")
+            self.radius = 0
 
     def render_shape(self):
         p = figure(
